@@ -8,8 +8,27 @@ body {
 	display: block;
 }
 
-.nav {
+h2 {
 	text-align: left;
 	width: 720px;
 	margin: 0 auto;
+}
+
+.clips {
+	text-align: left;
+	width: 720px;
+	margin: 0 auto;
+	display: block;
+}
+
+div.clip {
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+form {
+	clear: both;
 }

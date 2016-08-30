@@ -1,12 +1,12 @@
 (function() {
-    var video, sources, nav, clip, val, currentID;
+    var video, sources, clips, clipFunc, val, currentID;
     video = $('video#frag1');
     sources = $('source');
-    nav = $('.nav');
-    clip = $('#clipHandler');
+    clips = $('#clips');
+    clipFunc = $('#clipHandler');
 
-    function collectButtons(){
-        $.each($("button"), function(it){
+    function collectClips(){
+        $.each($("div.clip"), function(it){
             $(this).attr("data-id", it);
             $(this).click(function() {
                 var that = $(this);
@@ -15,36 +15,37 @@
                 video.load();
                 video.get(0).play();
                 });
-                clip.find("input[name='clipName']").val($(this).html());
-                clip.find("input[name='starttime']").val(that.attr('data-start'));
-                clip.find("input[name='endtime']").val(that.attr('data-end'));
+                //console.log(that.attr('data-start'))
+                clipFunc.find("input[name='clipName']").val(that.text());
+                clipFunc.find("input[name='starttime']").val(that.attr('data-start'));
+                clipFunc.find("input[name='endtime']").val(that.attr('data-end'));
                 currentID = that.attr("data-id");
             });
 
         });
     }
 
-    clip.submit(function(event){
+    clipFunc.submit(function(event){
         val = $(document.activeElement).val();
         //console.log(currentID);
         if (val === "Add Clip") {
-            nav.append("<button data-start="+$("input[name='starttime']").val()+" data-end="+$("input[name='endtime']").val()+">"+$("input[name='clipName']").val()+"</button>");
+            clips.append("<div class='clip' data-start="+$("input[name='starttime']").val()+" data-end="+$("input[name='endtime']").val()+">"+$("input[name='clipName']").val()+"</div>");
             $("input[name='starttime']").val('');
             $("input[name='endtime']").val('')
             $("input[name='clipName']").val('')
         } else if (val === "Edit Clip") {
             video.get(0).pause();
-            $("button[data-id="+ currentID +"]").attr('data-start', $("input[name='starttime']").val());
-            $("button[data-id="+ currentID +"]").attr('data-end', $("input[name='endtime']").val());
-            $("button[data-id="+ currentID +"]").html($("input[name='clipName']").val());
+            $("div[data-id="+ currentID +"]").attr('data-start', $("input[name='starttime']").val());
+            $("div[data-id="+ currentID +"]").attr('data-end', $("input[name='endtime']").val());
+            $("div[data-id="+ currentID +"]").html($("input[name='clipName']").val());
         } else {
-            if (currentID != 0) $("button[data-id="+ currentID +"]").remove();
+            if (currentID != 0) $("div[data-id="+ currentID +"]").remove();
         }
-        collectButtons();
+        collectClips();
 
         event.preventDefault();
     });
 
-    collectButtons();
+    collectClips();
 
 })(jQuery);
