@@ -29,14 +29,15 @@
 
       <h2>Clips</h2>
       <div id="clips">
-          <div class="clip" data-start="0" data-end="52" data-id="0">Full Video</div>
+        <div class="clip" data-start="0" data-end="52" data-id="0">Full Video</div>
       </div>
+      <div id="test"></div>
 
 
       <form id="clipHandler">
-        <input name="clipName" />
-        <input name="starttime" />
-        <input name="endtime" />
+        <input name="clipName" value="Clip Name" />
+        <input name="starttime" value="Start Time" />
+        <input name="endtime" value="End Time" />
         <input type="submit" value="Add Clip" />
         <input type="submit" value="Edit Clip" />
         <input type="submit" value="Delete Clip" />
@@ -49,8 +50,8 @@
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
     <!-- Include all compiled plugins (below), or include individual files as needed
     <script src="js/bootstrap.min.js"></script> -->
-    <!--<script type="text/JavaScript" src="js/mediaFragments.js"></script> -->
-     <script type="text/babel">
+    <script type="text/babel" src="js/mediaFragmentsReact.js"></script> 
+     <!-- <script type="text/babel">
      var CollectClips = React.createClass ({
         getInitialState: function () {
             return { count: 0 };
@@ -73,6 +74,6 @@
         <CollectClips />,
         document.getElementById('clips')
       );
-     </script>
+     </script> -->
   </body>
 </html>
