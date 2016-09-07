@@ -21,58 +21,34 @@
     <div id="main">
       <h1>Media Fragments</h1>
 
-      <video id="frag1" controls preload="metadata" width="720px" height="540px">
+      <video id="frag1" preload="metadata" controls  width="720px" height="540px">
       <source src="sintel_trailer-480.mp4"
               type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'
-              data-original="sintel_trailer-480.mp4">
+              data-original="sintel_trailer-480.mp4" />
       </video>
 
       <h2>Clips</h2>
       <div id="clips">
-          <div class="clip" data-start="0" data-end="52" data-id="0">Full Video</div>
+        <div class="clip" data-start="0" data-end="52" data-id="0"><canvas></canvas><figcaption>Full Video</figcaption></div>
       </div>
+      <div id="test"><button>click here</button></div>
 
 
       <form id="clipHandler">
-        <input name="clipName" />
-        <input name="starttime" />
-        <input name="endtime" />
+        <input name="clipName" value="Clip Name" />
+        <input name="starttime" value="Start Time" />
+        <input name="endtime" value="End Time" />
         <input type="submit" value="Add Clip" />
         <input type="submit" value="Edit Clip" />
         <input type="submit" value="Delete Clip" />
       </form>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="react-15.3.1/build/react.js"></script>
-    <script src="react-15.3.1/build/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
-    <!-- Include all compiled plugins (below), or include individual files as needed
-    <script src="js/bootstrap.min.js"></script> -->
-    <!--<script type="text/JavaScript" src="js/mediaFragments.js"></script> -->
-     <script type="text/babel">
-     var CollectClips = React.createClass ({
-        getInitialState: function () {
-            return { count: 0 };
-          },
-          handleClick: function () {
-            this.setState({
-              count: this.state.count + 1,
-            });
-          },
-          render: function () {
-            return (
-              <div className="clip" onClick={this.handleClick}>
-                Click me! Number of clicks: {this.state.count}
-              </div>
-            );
-          }
-      });
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mediaFragments.js"></script>
 
-      ReactDOM.render(
-        <CollectClips />,
-        document.getElementById('clips')
-      );
-     </script>
   </body>
 </html>

@@ -4,10 +4,13 @@
     sources = $('source');
     clips = $('#clips');
     clipFunc = $('#clipHandler');
+    inputs = $("input[name]");
+
 
     function collectClips(){
         $.each($("div.clip"), function(it){
             $(this).attr("data-id", it);
+            captureImage($(this).attr("data-start"), it);
             $(this).click(function() {
                 var that = $(this);
                 $.each(sources, function(){
@@ -29,7 +32,7 @@
         val = $(document.activeElement).val();
         //console.log(currentID);
         if (val === "Add Clip") {
-            clips.append("<div class='clip' data-start="+$("input[name='starttime']").val()+" data-end="+$("input[name='endtime']").val()+">"+$("input[name='clipName']").val()+"</div>");
+            clips.append("<div class='clip' data-start="+$("input[name='starttime']").val()+" data-end="+$("input[name='endtime']").val()+"><canvas></canvas><figcaption>"+ $("input[name='clipName']").val() +"</figcaption></div>");
             $("input[name='starttime']").val('');
             $("input[name='endtime']").val('')
             $("input[name='clipName']").val('')
@@ -44,6 +47,38 @@
         collectClips();
 
         event.preventDefault();
+    });
+
+    function captureImage(clipTime, videoID) {
+        var scale = 0.10;
+        var canvas = $(".clip[data-id="+videoID+"]").find("canvas").get(0);
+        console.log(videoID);
+        var getVid = document.getElementById("frag1");
+        canvas.width = getVid.videoWidth * scale;
+        canvas.height = getVid.videoHeight * scale;
+        getVid.currentTime = clipTime;
+        console.log(canvas);
+
+        canvas.getContext("2d").drawImage(getVid, 0, 0, canvas.width, canvas.height);
+    }
+
+    inputs.on("focus", function(){
+        $(this).val("");
+    })
+
+    $("#test").find("button").on("click", function(){
+        var scale = 0.10;
+         var canvas = $("canvas").get(0);
+        //console.log(videoID);
+        var getVid = document.getElementById("frag1");
+        canvas.width = getVid.videoWidth * scale;
+        canvas.height = getVid.videoHeight * scale;
+        //getVid.currentTime = 10;
+        console.log(canvas);
+        getVid.onload = function() {
+            canvas.getContext("2d").drawImage(getVid, 0, 0, canvas.width, canvas.height);
+        };
+        
     });
 
     collectClips();

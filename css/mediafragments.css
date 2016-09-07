@@ -14,7 +14,7 @@ h2 {
 	margin: 0 auto;
 }
 
-.clips {
+#clips {
 	text-align: left;
 	width: 720px;
 	margin: 0 auto;
@@ -24,11 +24,31 @@ h2 {
 div.clip {
 	float: left;
 	margin: 5px;
-	padding: 5px;
 	cursor: pointer;
 	border: 1px solid black;
 }
 
+canvas {
+	width: 100px;
+	height: 100px;
+}
+
+figcaption {
+	text-align: center;
+}
+
 form {
+	clear: both;
+}
+
+input {
+	width: 200px;
+}
+input[type='submit'] {
+	width: auto;
+}
+
+
+.clear {
 	clear: both;
 }
